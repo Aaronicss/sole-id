@@ -5,10 +5,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,
-    proxy: {
-      '/predict': 'http://localhost:5000',
-      '/health':  'http://localhost:5000',
-      '/classes': 'http://localhost:5000',
-    }
+    // No proxy needed — HF Space is a public external URL
+    // Set VITE_API_URL in .env.local for local dev pointing to local FastAPI
   }
 })
