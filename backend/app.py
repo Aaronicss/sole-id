@@ -25,18 +25,15 @@ DEVICE     = "cuda" if torch.cuda.is_available() else "cpu"
 
 # ─── Model Architecture (must match training notebook) ────────
 class CLIPShoeClassifier(nn.Module):
-    def __init__(self, clip_model, num_classes, embed_dim=512):
+    def __init__(self, clip_model, num_classes, embed_dim=768):
         super().__init__()
         self.clip_model = clip_model
         self.classifier = nn.Sequential(
-            nn.LayerNorm(embed_dim),
-            nn.Linear(embed_dim, 256),
-            nn.GELU(),
-            nn.Dropout(0.3),
-            nn.Linear(256, 128),
+            nn.LayerNorm(768),
+            nn.Linear(768, 256),
             nn.GELU(),
             nn.Dropout(0.2),
-            nn.Linear(128, num_classes),
+            nn.Linear(256, num_classes)
         )
 
     def forward(self, images):
@@ -51,7 +48,7 @@ class CLIPShoeClassifier(nn.Module):
 
 # ─── Load model at startup ────────────────────────────────────
 print(f"Loading CLIP backbone on {DEVICE}...")
-clip_backbone, clip_preprocess = clip.load("ViT-B/32", device=DEVICE)
+clip_backbone, clip_preprocess = clip.load("ViT-L/14", device=DEVICE)
 for p in clip_backbone.parameters():
     p.requires_grad = False
 clip_backbone.eval()
