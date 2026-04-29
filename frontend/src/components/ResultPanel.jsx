@@ -124,6 +124,22 @@ const SHOE_INFO = {
   },
 };
 
+const normalizeClassId = (id) => {
+  const map = {
+    'samba':       'adidas_samba',
+    'stan_smith':  'adidas_stan_smith',
+    'superstar':   'adidas_superstar',
+    'gazelle':     'adidas_gazelle',
+    'campus':      'adidas_campus',
+    'spezial':     'adidas_spezial',
+    'air_force_1': 'nike_air_force_1',
+    'dunk_low':    'nike_dunk_low',
+    'dunk_high':   'nike_dunk_high',
+    'air_max_90':  'nike_air_max_90',
+  };
+  return map[id] || id;
+};
+
 const confColor = (c) => c >= 70 ? "var(--accent)" : c >= 40 ? "#f0a030" : "var(--muted)";
 
 export default function ResultPanel({ result, onReset }) {
@@ -131,7 +147,7 @@ export default function ResultPanel({ result, onReset }) {
   const [activeTab, setActiveTab] = useState("overview");
   const { top, predictions, thumbnail, image_size } = result;
 
-  const info    = SHOE_INFO[top.class_id] || null;
+  const info  = SHOE_INFO[normalizeClassId(top.class_id)] || null;
   const visible = showAll ? predictions : predictions.slice(0, 5);
   const maxConf = predictions[0].confidence;
 
@@ -241,7 +257,7 @@ export default function ResultPanel({ result, onReset }) {
         <h3 className="bars-title">Full probability distribution</h3>
         <div className="bars-list">
           {visible.map((pred, i) => {
-            const pInfo = SHOE_INFO[pred.class_id];
+            const pInfo = SHOE_INFO[normalizeClassId(pred.class_id)];
             return (
               <div key={pred.class_id} className={`bar-row ${i===0?"bar-row--top":""}`} style={{animationDelay:`${i*60}ms`}}>
                 <div className="bar-meta">
