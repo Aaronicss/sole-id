@@ -1,0 +1,161 @@
+.howto {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  padding: 2.5rem 1.5rem;
+}
+
+.howto-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ── About band ── */
+.about-band {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.about-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  border: 1px solid rgba(232,240,74,0.3);
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  width: fit-content;
+}
+
+.about-title {
+  font-family: var(--font-head);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--text);
+}
+
+.about-desc {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 640px;
+}
+
+.about-desc strong { color: var(--text); font-weight: 600; }
+
+.about-chips {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+.chip {
+  font-size: 0.68rem;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+}
+
+/* ── Steps grid ── */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+@media (max-width: 700px) {
+  .steps-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.step-card {
+  background: var(--surface2);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: background 0.2s;
+}
+
+.step-card:hover { background: #1e1e1e; }
+
+.step-num {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.step-icon { font-size: 1.4rem; line-height: 1; }
+
+.step-title {
+  font-family: var(--font-head);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.step-desc {
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ── Tips ── */
+.tips-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.75rem 1rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.tips-label {
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+  padding-top: 0.15rem;
+}
+
+.tips-list {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tip {
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  color: #4ade80;
+  background: rgba(74,222,128,0.07);
+  border: 1px solid rgba(74,222,128,0.15);
+}
+
+.tip--bad {
+  color: #f87171;
+  background: rgba(248,113,113,0.07);
+  border-color: rgba(248,113,113,0.15);
+}
