@@ -57,14 +57,11 @@ class CLIPShoeClassifier(nn.Module):
         super().__init__()
         self.clip_model = clip_model
         self.classifier = nn.Sequential(
-            nn.LayerNorm(embed_dim),
-            nn.Linear(embed_dim, 256),
-            nn.GELU(),
-            nn.Dropout(0.3),
-            nn.Linear(256, 128),
-            nn.GELU(),
-            nn.Dropout(0.2),
-            nn.Linear(128, num_classes),
+          nn.LayerNorm(768),
+          nn.Linear(768, 256),
+          nn.GELU(),
+          nn.Dropout(0.2),
+          nn.Linear(256, num_classes),
         )
 
     def forward(self, images):
@@ -89,7 +86,7 @@ model_path = hf_hub_download(
 )
 
 print("🧠 Loading CLIP backbone...")
-clip_backbone, clip_preprocess = clip.load("ViT-B/32", device=DEVICE)
+clip_backbone, clip_preprocess = clip.load("ViT-L/14", device=DEVICE)
 for p in clip_backbone.parameters():
     p.requires_grad = False
 clip_backbone.eval()
